@@ -1,1 +1,1 @@
-# anatomy_of_java_instrumentation
+# Anatomy of Java Instrumentation
