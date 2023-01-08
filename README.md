@@ -4,6 +4,19 @@ In this talk, we will perform a detailed dissection of the OpenTelemetry Java ag
 framework. We will explore the connective tissue that binds the agent to an application’s behavior and
 learn how observable telemetry is created automatically.
 
+## Approach
+
+* 5 minutes of background + terminology
+* 5 minutes gross anatomy (javaagent and bytecode weaving)
+* 10 minutes of api and building instrumentation 
+* 5 minutes of library
+* 5 minutes of library instrumentation
+* 5 minutes of agent instrumentation
+* 5 minutes wiring extension
+* 5 minute demo
+
+## Outline
+
 * software telemetry signals?
    * traces - record of a call tree
       * often distributed across network services
