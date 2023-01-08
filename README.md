@@ -4,10 +4,16 @@ In this talk, we will perform a detailed dissection of the OpenTelemetry Java ag
 framework. We will explore the connective tissue that binds the agent to an application’s behavior and
 learn how observable telemetry is created automatically.
 
+* software telemetry signals?
+   * (distributed) traces
+      * service-to-service calls with duration and metadata
+   * metrics - point in time numerical measurements
+      * sum (counter), gauge, histogram
+   * logs - usually text, sometimes structured, sometimes in (trace) context
 * brief background context about (javaagent) instrumentation
     * add one commandline arg
-        * out pops traces
-        * out pops metrics
+        * out pops telemetry
+            * show traces, show metrics
         * rich visibility with little user effort!
         * BUT HOW? (teaser)
     * vendors did this - wily, new relic (invented APM)
