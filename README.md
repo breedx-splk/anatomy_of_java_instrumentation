@@ -4,7 +4,7 @@ In this talk, we will perform a detailed dissection of the OpenTelemetry Java ag
 framework. We will explore the connective tissue that binds the agent to an application’s behavior and
 learn how observable telemetry is created automatically.
 
-* brief background about (javaagent) instrumentation
+* brief background context about (javaagent) instrumentation
     * add one commandline arg
         * out pops traces
         * out pops metrics
@@ -23,13 +23,15 @@ learn how observable telemetry is created automatically.
     * how many have written one?
     * public static void premain(String agentArgs, Instrumentation inst) 
         * called before application entry
+        * Instrumentation.addTransformer(...)
+        * Instrumentation.redefineClasses(...)
+        * Instrumentation.retransformClasses()
+* it’s not magic!
+    * but maybe it’s hacky
 * so here is opentelemetry-java-instrumentation agent
     * look at all these instrumented libraries!
     * how do they work?
     * what if my favorite library is missing and I want to make a new one?
-* .
-* it’s not magic!
-    * but maybe it’s hacky
 * how does it get its hooks into classloading?
 * instrumentation api / instrumentation module
 * matching - class/method 
