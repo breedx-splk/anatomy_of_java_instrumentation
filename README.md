@@ -96,13 +96,13 @@ we will slice into an example library to create a brand new instrumentation.
         * hooks to observe the library behavior (observer pattern?)
             * (if you write a library, please do this!)
         * note: just pure API, no implementation (yet)
-* an example application that uses our library
+* an example application that uses this toy library
     * show code
     * curl a quick demo
         * look at how simple/boring our traces are!
     * we want additional visibility, especially around this lib
 * let's build library instrumentation
-    * register our lib instrumentation with library code hooks
+    * register this lib instrumentation with library code hooks
     * implement opentelemetry calls
         * create, start, end span
     * (we could just use this in our app and call it done)
@@ -110,19 +110,28 @@ we will slice into an example library to create a brand new instrumentation.
         * we like the agent
 * let's build javaagent instrumentation
     * create the `InstrumentationModule` impl
-    * create our single `TypeInstrumentation`
+    * create a single `TypeInstrumentation`
 * time to close up the patient!
     * build this as an agent *extension jar*
-    * modify our startup to use the extension
+    * modify startup to use the extension
     * run the app, hit the endpoint
     * look at our new trace!
-* looking at a speciment in the microscope:
+        * show attributes
+* looking at a specimen under the microscope:
     * compare byte code pre/post instrumentation
         * decompiled original library `.class` file
         * dumped class bytes after instrumentation
-        * see, there's our instrumentation code...
-
-
+        * see, there's our new instrumentation code...
+* conclusions
+    * we've demystified how java otel instrumentation is built
+    * we've shown how to build library instrumentation
+    * we've shown how to create javaagent instrumentation using the apis
+    * we've deployed an agent extension
+        * we've observed the toy library behavior
+        * ...in the context of our application
+    * call to action:
+        * if you ship reusable libs, please add o11y hooks
+        * consider contributing new instrumenation for your favorite lib
 
 ## Resources 
 
