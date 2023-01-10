@@ -3,7 +3,7 @@
 In this talk, we will perform a detailed dissection of the OpenTelemetry Java agent instrumentation
 framework. We will explore the connective tissue that binds the agent to an application’s behavior and
 learn how observable telemetry is created automatically. With this new understanding as our scalpel, 
-we will slice in to construct new instrumentation for an example library.
+we will slice into an example library to create brand new instrumentation.
 
 ## Approach
 
@@ -27,7 +27,7 @@ we will slice in to construct new instrumentation for an example library.
    * logs 
       * usually human-readable text, sometimes structured, sometimes in (trace) context
 * brief background context about (javaagent) instrumentation
-    * add one commandline arg
+    * users add just one commandline arg
         * out pops telemetry
             * show traces, show metrics
         * rich visibility with little user effort!
@@ -87,6 +87,21 @@ we will slice in to construct new instrumentation for an example library.
         * agentbuilder
     * target the advice!
 * an example library to instrument
-    * 
+    * prime factors (or similar)
+    * here's what it looks like as a hostile implementation
+        * no observability hooks in place
+        * would normally have to target implementation itself
+    * here's what it looks like improved
+        * hooks to observe the library behavior (observer pattern?)
+        * note: just pure API, no implementation (yet)
+* an example application that uses our library
+    * look at how simple/boring our traces are!
+    * we want additional visibility
 * compare byte code pre/post instrumentation
 * agent extension
+
+
+## Resources 
+
+* [writing-instrumentation](https://github.com/open-telemetry/opentelemetry-java-instrumentation/blob/main/docs/contributing/writing-instrumentation.md)
+* [writing instrumentation module](https://github.com/open-telemetry/opentelemetry-java-instrumentation/blob/main/docs/contributing/writing-instrumentation-module.md)
