@@ -5,7 +5,7 @@ framework. We will explore the connective tissue that binds the agent to an appl
 learn how observable telemetry is created automatically. With this new understanding as our scalpel, 
 we will slice into an example library to create brand new instrumentation.
 
-## Approach
+## Approach (preliminary)
 
 * 5 minutes of background context + terminology
 * 5 minutes gross anatomy (javaagent and bytecode weaving)
@@ -23,7 +23,7 @@ we will slice into an example library to create brand new instrumentation.
       * often distributed across network services
       * service-to-service calls with duration and metadata
    * metrics - point in time numerical measurements
-      * sum (counter), gauge, histogram
+      * counter, gauge, histogram
    * logs 
       * usually human-readable text, sometimes structured, sometimes in (trace) context
 * brief background context about (javaagent) instrumentation
@@ -80,13 +80,14 @@ we will slice into an example library to create brand new instrumentation.
     * `TypeInstrumentation`
         * responsible for specifying what to transform
         * what class(es) to transform
-        * what advice to 
-        * class filters - (shortcut) "when _can_ this instrumentation apply"
-* matching - class/method 
-    * byte buddy
-        * agentbuilder
-    * target the advice!
-* an example library to instrument
+        * what methods should get "Advice" classes applied
+            * see below
+        * classLoaderOptimization - (shortcut) "when _can_ this instrumentation apply"
+    * advice classes
+        * place instrumentation code into target bytecode
+        * `@Advice.OnMethodEnter/Exit` annotations
+        * (similar to AOP join points)
+* an example toy library to instrument
     * prime factors (or similar)
     * here's what it looks like as a hostile implementation
         * no observability hooks in place
@@ -95,9 +96,23 @@ we will slice into an example library to create brand new instrumentation.
         * hooks to observe the library behavior (observer pattern?)
         * note: just pure API, no implementation (yet)
 * an example application that uses our library
-    * look at how simple/boring our traces are!
-    * we want additional visibility
+    * show code
+    * curl a quick demo
+        * look at how simple/boring our traces are!
+    * we want additional visibility, especially around this lib
+* let's build library instrumentation
+    * register our lib instrumentation with library code hooks
+    * implement opentelemetry calls
+        * create, start, end span
+    * (we could just use this in our app and call it done)
+        * requires us to manage otel instance
+        * we like the agent
+* let's build javaagent instrumentation
+* 
 * compare byte code pre/post instrumentation
+  * decompiled original library `.class` file
+  * dumped class bytes after instrumentation
+  * see, there's our instrumentation code...
 * agent extension
 
 
