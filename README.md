@@ -3,17 +3,17 @@
 In this talk, we will perform a detailed dissection of the OpenTelemetry Java agent instrumentation
 framework. We will explore the connective tissue that binds the agent to an application’s behavior and
 learn how observable telemetry is created automatically. With this new understanding as our scalpel, 
-we will slice right in to construct new instrumentation for an example library.
+we will slice in to construct new instrumentation for an example library.
 
 ## Approach
 
-* 5 minutes of background + terminology
+* 5 minutes of background context + terminology
 * 5 minutes gross anatomy (javaagent and bytecode weaving)
-* 10 minutes of api and building instrumentation 
-* 5 minutes of library
-* 5 minutes of library instrumentation
-* 5 minutes of agent instrumentation
-* 5 minutes wiring extension
+* 10 minutes of instrumentation api and wiring diagram
+* 5 minute tour of example library + app
+* 5 minutes of building library instrumentation
+* 5 minutes of building agent instrumentation
+* 5 minutes wiring an agent extension
 * 5 minute demo
 
 ## Outline
@@ -77,6 +77,11 @@ we will slice right in to construct new instrumentation for an example library.
         * a logical grouping for related instrumentations
         * responsible for supplying relevant `TypeInstrumentation`s
         * hundreds and hundreds of TypeInstrumentations
+    * `TypeInstrumentation`
+        * responsible for specifying what to transform
+        * what class(es) to transform
+        * what advice to 
+        * class filters - (shortcut) "when _can_ this instrumentation apply"
 * matching - class/method 
     * byte buddy
         * agentbuilder
