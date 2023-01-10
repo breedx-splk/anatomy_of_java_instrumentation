@@ -3,7 +3,7 @@
 In this talk, we will perform a detailed dissection of the OpenTelemetry Java agent instrumentation
 framework. We will explore the connective tissue that binds the agent to an application’s behavior and
 learn how observable telemetry is created automatically. With this new understanding as our scalpel, 
-we will slice into an example library to create brand new instrumentation.
+we will slice into an example library to create a brand new instrumentation.
 
 ## Approach (preliminary)
 
@@ -94,6 +94,7 @@ we will slice into an example library to create brand new instrumentation.
         * would normally have to target implementation itself
     * here's what it looks like improved
         * hooks to observe the library behavior (observer pattern?)
+            * (if you write a library, please do this!)
         * note: just pure API, no implementation (yet)
 * an example application that uses our library
     * show code
@@ -108,12 +109,19 @@ we will slice into an example library to create brand new instrumentation.
         * requires us to manage otel instance
         * we like the agent
 * let's build javaagent instrumentation
-* 
-* compare byte code pre/post instrumentation
-  * decompiled original library `.class` file
-  * dumped class bytes after instrumentation
-  * see, there's our instrumentation code...
-* agent extension
+    * create the `InstrumentationModule` impl
+    * create our single `TypeInstrumentation`
+* time to close up the patient!
+    * build this as an agent *extension jar*
+    * modify our startup to use the extension
+    * run the app, hit the endpoint
+    * look at our new trace!
+* looking at a speciment in the microscope:
+    * compare byte code pre/post instrumentation
+        * decompiled original library `.class` file
+        * dumped class bytes after instrumentation
+        * see, there's our instrumentation code...
+
 
 
 ## Resources 
