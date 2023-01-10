@@ -1,8 +1,9 @@
 # The Anatomy of Java Instrumentation
 
-In this talk, we will perform a detailed dissection of the OpenTelemetry Java agent’s instrumentation
+In this talk, we will perform a detailed dissection of the OpenTelemetry Java agent instrumentation
 framework. We will explore the connective tissue that binds the agent to an application’s behavior and
-learn how observable telemetry is created automatically.
+learn how observable telemetry is created automatically. With this new understanding as our scalpel, 
+we will slice right in to construct new instrumentation for an example library.
 
 ## Approach
 
