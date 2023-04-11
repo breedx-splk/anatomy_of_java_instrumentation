@@ -135,5 +135,6 @@ we will slice into an example library to create a brand new instrumentation.
 
 ## Resources 
 
+* [interesting/related issue](https://github.com/open-telemetry/opentelemetry-java-instrumentation/issues/8242)
 * [writing-instrumentation](https://github.com/open-telemetry/opentelemetry-java-instrumentation/blob/main/docs/contributing/writing-instrumentation.md)
 * [writing instrumentation module](https://github.com/open-telemetry/opentelemetry-java-instrumentation/blob/main/docs/contributing/writing-instrumentation-module.md)
