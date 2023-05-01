@@ -13,6 +13,6 @@ See [outline.md] for talk outline.
 
 Here is a summary of the projects in this repo:
 
-* lib
-* app
+* hospital-lib - A general-purpose library for all things medical!
+* surgeon-app - An example application 
 * instrumentation
