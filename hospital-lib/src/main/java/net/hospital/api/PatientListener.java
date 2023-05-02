@@ -11,9 +11,9 @@ import net.hospital.model.Patient;
 public interface PatientListener {
 
     /**
-     * Called every time a new diagnosis is made.
+     * Called when a patient receives treatment.
      */
-    default void onDiagnosis(Doctor doctor, Patient patient, Ailment ailment){}
+    default void onTreatment(Doctor doctor, Patient patient, Ailment ailment, String notes){}
 
     /**
      * Called when a patient checks in to a Hospital
@@ -24,4 +24,14 @@ public interface PatientListener {
      * Called when a patient checks out of a Hospital
      */
     default void onCheckOut(Patient patient){}
+
+    /**
+     * Called when a Doctor first sees a Patient
+     */
+    default void onStartDoctorVisit(Patient patient, Doctor doctor){}
+
+    /**
+     * Called when a doctor finishes seeing a Patient
+     */
+    default void onEndDoctorVisit(Patient patient, Doctor doctor){}
 }
