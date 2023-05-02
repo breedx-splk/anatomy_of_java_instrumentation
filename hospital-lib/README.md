@@ -11,5 +11,6 @@ still pretty cool, and it is used to help save many lives every day!
 ## APIs
 
 * `registerPatient(Patient)`
-* `registerSurgeon(Surgeon)`
+* `doctorAvailable(Doctor)`
+* `doctorUnavailable(Doctor)`
 * 

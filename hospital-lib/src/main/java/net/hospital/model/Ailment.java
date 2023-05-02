@@ -1,4 +1,14 @@
 package net.hospital.model;
 
-public class Ailment {
+public enum Ailment {
+    ALLERGY,
+    BLEEDING,
+    BROKEN_BONE,
+    COUGH,
+    HEADACHE,
+    INSOMNIA,
+    FATIGUE,
+    NAUSEA,
+    POISONING,
+    VIRAL_INFECTION,
 }
