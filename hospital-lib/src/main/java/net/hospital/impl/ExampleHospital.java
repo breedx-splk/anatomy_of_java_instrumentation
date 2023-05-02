@@ -72,10 +72,19 @@ public final class ExampleHospital implements Hospital {
         Doctor doctor = entry.getValue();
         if(activeVisits.remove(patient) != null){
             Ailment ailment = patient.ailments().get(0);
-            System.out.println(patient.name() + " has been treated by Dr. " + doctor.name() + " for " + ailment);
-            listeners.forEach(listener -> listener.onEndDoctorVisit(patient, doctor));
-        }
 
+            listeners.forEach(listener -> listener.onEndDoctorVisit(patient, doctor));
+            System.out.println(patient.name() + " has been treated by " + doctor.name() + " for " + ailment);
+            listeners.forEach(listener -> listener.onTreatment(doctor, patient, ailment, "Given excellent medical treatment!"));
+
+            doctorAvailable(doctor);
+            Patient healedPatient = patient.removeAilment(ailment);
+            waitingRoom.add(healedPatient);
+            if(!healedPatient.hasRemainingAilments()){
+                // All healed up!
+                checkOut(patient);
+            }
+        }
     }
 
     @Override
@@ -87,7 +96,7 @@ public final class ExampleHospital implements Hospital {
     @Override
     public void doctorUnavailable(Doctor doctor, String reason) {
         //TODO: Make sure doctor isn't with a patient and exists at this hospital
-        System.out.println("Dr. " + doctor + " is unavailable: " + reason);
+        System.out.println(doctor.name() + " is unavailable: " + reason);
         doctors.remove(doctor);
     }
 

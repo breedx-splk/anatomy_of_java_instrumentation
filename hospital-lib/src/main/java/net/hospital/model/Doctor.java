@@ -8,6 +8,6 @@ public record Doctor(String firstName, String lastName, List<Ailment> specialtie
     }
 
     public String name() {
-        return firstName + " " + lastName;
+        return "Dr. " + firstName + " " + lastName;
     }
 }
