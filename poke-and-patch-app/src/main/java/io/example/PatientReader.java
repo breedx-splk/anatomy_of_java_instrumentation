@@ -19,6 +19,9 @@ public class PatientReader {
         System.out.print("Enter name: ");
         String name = in.readLine();
         String[] parts = name.split(" ");
+        if(parts.length < 2){
+            return readPatient();
+        }
         List<Ailment> ailments = new AilmentsReader(in).readAilments();
         return new Patient(parts[0], parts[1], ailments);
     }

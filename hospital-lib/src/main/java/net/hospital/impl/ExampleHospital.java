@@ -36,20 +36,20 @@ public final class ExampleHospital implements Hospital {
 
     private void start() {
         // Just an old-fashioned inefficient operation loop here.
-        loop.scheduleAtFixedRate(this::loop, 0, 1000, TimeUnit.SECONDS);
+        loop.scheduleAtFixedRate(this::loop, 0, 3, TimeUnit.SECONDS);
     }
 
     private ExampleHospital() {
     }
 
     private void loop() {
-        System.out.println("ExampleHospital.loop()");
-        if(!waitingRoom.isEmpty()){
-            findAPatientADoctor();
-            return;
-        }
+//        System.out.println("ExampleHospital.loop()");
         if(!activeVisits.isEmpty()){
             performATreatment();
+            return;
+        }
+        if(!waitingRoom.isEmpty()){
+            findAPatientADoctor();
             return;
         }
     }
@@ -86,14 +86,14 @@ public final class ExampleHospital implements Hospital {
             waitingRoom.add(healedPatient);
             if(!healedPatient.hasRemainingAilments()){
                 // All healed up!
-                checkOut(patient);
+                checkOut(healedPatient);
             }
         }
     }
 
     @Override
     public void doctorAvailable(Doctor doctor) {
-        System.out.println("Dr. " + doctor + " is now available in the hospital.");
+        System.out.println("Dr. " + doctor.name() + " is now available in the hospital.");
         doctors.add(doctor);
     }
 

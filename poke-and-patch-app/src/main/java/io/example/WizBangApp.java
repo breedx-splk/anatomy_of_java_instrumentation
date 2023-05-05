@@ -3,13 +3,23 @@ package io.example;
 import net.hospital.api.Hospital;
 import net.hospital.api.PatientListener;
 import net.hospital.impl.ExampleHospital;
+import net.hospital.model.Ailment;
+import net.hospital.model.Doctor;
 import net.hospital.model.Patient;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
+
+import static net.hospital.model.Ailment.BLEEDING;
+import static net.hospital.model.Ailment.EAR_ACHE;
+import static net.hospital.model.Ailment.FATIGUE;
+import static net.hospital.model.Ailment.INSOMNIA;
+import static net.hospital.model.Ailment.POISONING;
 
 /**
  * Pretend this is a full-fledged UI
@@ -27,16 +37,28 @@ public class WizBangApp implements PatientListener {
 
     public static void main(String[] args) throws Exception {
         Hospital hospital = ExampleHospital.create();
+        Patient p1 = new Patient("Jeff", "Smith", List.of(BLEEDING, INSOMNIA));
+        Patient p2 = new Patient("Jessica", "Andou", List.of(EAR_ACHE, FATIGUE));
+        Doctor d1 = new Doctor("P", "Drummond", List.of(BLEEDING, INSOMNIA, EAR_ACHE, POISONING));
+        hospital.checkIn(p1);
+        hospital.checkIn(p2);
+        hospital.doctorAvailable(d1);
         new WizBangApp(hospital).run();
     }
 
     private void run() throws IOException {
         hospital.registerPatientListener(this);
-        while(true){
+        while (true) {
             mainMenu();
             String entry = read();
-            if(Objects.equals(entry, "1")){
-                Patient patient = new PatientReader(in).readPatient();
+            switch (entry) {
+                case "1":
+                    Patient patient = new PatientReader(in).readPatient();
+                    hospital.checkIn(patient);
+                    break;
+                case "2":
+                    Doctor doc = new DoctorReader(in).readDoctor();
+                    hospital.doctorAvailable(doc);
             }
         }
     }

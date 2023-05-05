@@ -16,12 +16,16 @@ public class AilmentsReader {
     }
 
     List<Ailment> readAilments() throws IOException {
+        return readAilments("ailments");
+    }
+
+    List<Ailment> readAilments(String prompt) throws IOException {
         List<Ailment> all = Arrays.asList(Ailment.values());
         for (int i = 0; i < all.size(); i++) {
             System.out.printf(" %2d. %s\n", i+1, all.get(i));
         }
         System.out.println();
-        System.out.print("Enter ailments: ");
+        System.out.printf("Enter %s: ", prompt);
         String[] parts = in.readLine().split(",");
         return Arrays.stream(parts)
                 .map(Integer::valueOf)
