@@ -16,6 +16,10 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * This serves as a very basic reference implementation of the API
+ * offered in the Hospital interface.
+ */
 public final class ExampleHospital implements Hospital {
 
     private final Queue<Doctor> doctors = new ConcurrentLinkedQueue<>();
