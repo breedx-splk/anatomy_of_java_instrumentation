@@ -44,17 +44,18 @@ public final class ExampleHospital implements Hospital {
 
     private void loop() {
 //        System.out.println("ExampleHospital.loop()");
+        if(!waitingRoom.isEmpty()){
+            if(findAPatientADoctor()){
+                return;
+            }
+        }
         if(!activeVisits.isEmpty()){
             performATreatment();
             return;
         }
-        if(!waitingRoom.isEmpty()){
-            findAPatientADoctor();
-            return;
-        }
     }
 
-    private void findAPatientADoctor() {
+    private boolean findAPatientADoctor() {
         Patient patient = waitingRoom.remove();
         Ailment ailment = patient.ailments().get(0);
         Doctor doctor = DoctorFinder.find(doctors, ailment);
@@ -62,11 +63,13 @@ public final class ExampleHospital implements Hospital {
         if (doctor == null) {
             System.out.println("Warning: Could not find " + patient + " a doctor.");
             waitingRoom.add(patient);
+            return false;
         } else {
             doctors.remove(doctor);
             doctorUnavailable(doctor, "Starting treatment of " + patient.name() + " for " + ailment);
             activeVisits.put(patient, doctor);
             listeners.forEach(listener -> listener.onStartDoctorVisit(patient, doctor));
+            return true;
         }
     }
 
