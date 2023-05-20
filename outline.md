@@ -3,7 +3,7 @@
 In this talk, we will perform a detailed dissection of the OpenTelemetry Java agent instrumentation
 framework. We will explore the connective tissue that binds the agent to an application’s behavior and
 learn how observable telemetry is created automatically. With this new understanding as our scalpel,
-we will slice into an example library to create a brand new instrumentation.
+we will slice into an example library to create a brand-new instrumentation.
 
 ## Approach (preliminary)
 
@@ -33,7 +33,7 @@ we will slice into an example library to create a brand new instrumentation.
         * rich visibility with little user effort!
         * BUT HOW? (teaser)
     * vendors did this - wily, new relic (invented APM)
-        * propietary / closed-source "secret sauce"
+        * proprietary / closed-source "secret sauce"
     * other vendors followed - datadog, appdynamics, dynatrace
     * user overwhelm and vendor lock-in
 * going open source
