@@ -10,12 +10,12 @@ import net.hospital.model.Patient;
 import java.util.HashMap;
 import java.util.Map;
 
-public class OtelCheckInListener implements PatientListener {
+class OtelCheckInListener implements PatientListener {
 
     private final Instrumenter<Patient, Void> instrumenter;
     private final Map<String, Context> patientContext = new HashMap<>();
 
-    public OtelCheckInListener(Instrumenter<Patient, Void> instrumenter) {
+    OtelCheckInListener(Instrumenter<Patient, Void> instrumenter) {
         this.instrumenter = instrumenter;
     }
 
