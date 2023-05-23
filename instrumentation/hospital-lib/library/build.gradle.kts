@@ -17,6 +17,7 @@ val otelInstVersion = "1.25.1";
 val otelInstVersionAlpha = "1.25.1-alpha";
 
 dependencies {
+    api(project(":hospital-lib"))
     api(platform("io.opentelemetry:opentelemetry-bom:$otelVersion"))
     api("io.opentelemetry.instrumentation:opentelemetry-instrumentation-api:$otelInstVersion")
     api("io.opentelemetry.instrumentation:opentelemetry-instrumentation-api-semconv:$otelInstVersionAlpha")

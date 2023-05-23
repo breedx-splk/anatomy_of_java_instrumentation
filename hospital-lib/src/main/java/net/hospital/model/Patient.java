@@ -2,7 +2,6 @@ package net.hospital.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public record Patient(String firstName, String lastName, List<Ailment> ailments) {
     public String name() {
