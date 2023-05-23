@@ -57,7 +57,6 @@ public class WizBangApp implements PatientListener {
 
     private static void addInstrumentation(Hospital hospital) {
         AutoConfiguredOpenTelemetrySdk autoconfigureSdk = AutoConfiguredOpenTelemetrySdk.initialize();
-//        OpenTelemetrySdk otel = OpenTelemetrySdk.builder().buildAndRegisterGlobal();
         OpenTelemetrySdk otelSdk = autoconfigureSdk.getOpenTelemetrySdk();
         HospitalTelemetry hospitalTelemetry = HospitalTelemetry.create(otelSdk);
         hospitalTelemetry.observeHospital(hospital);
