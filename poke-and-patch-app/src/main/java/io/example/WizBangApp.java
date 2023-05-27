@@ -26,7 +26,7 @@ import static net.hospital.model.Ailment.VIRAL_INFECTION;
 /**
  * Pretend this is a full-fledged UI
  */
-public class WizBangApp implements PatientListener {
+public class WizBangApp {
 
     private final Hospital hospital;
     private final BufferedReader in;
@@ -63,9 +63,7 @@ public class WizBangApp implements PatientListener {
     }
 
     private void run() throws IOException {
-        hospital.registerPatientListener(this);
         while (true) {
-//            mainMenu();
             String entry = read();
             switch (entry) {
                 case "1":
