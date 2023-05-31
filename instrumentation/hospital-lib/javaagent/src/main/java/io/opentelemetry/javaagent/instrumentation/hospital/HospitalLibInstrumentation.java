@@ -30,12 +30,12 @@ public class HospitalLibInstrumentation implements TypeInstrumentation {
                 isMethod()
                 .and(named("startTreatment"))
                 .and(takesArguments(3)),
-                HospitalInstrumentationModule.class.getName() + "$TreatmentStartingAdvice");
+                HospitalLibInstrumentation.class.getName() + "$TreatmentStartingAdvice");
         transformer.applyAdviceToMethod(
                 isMethod()
                 .and(named("finishTreatment"))
                 .and(takesArguments(2)),
-                HospitalInstrumentationModule.class.getName() + "$TreatmentFinishingAdvice");
+                HospitalLibInstrumentation.class.getName() + "$TreatmentFinishingAdvice");
     }
 
     public static class TreatmentStartingAdvice {
@@ -48,11 +48,25 @@ public class HospitalLibInstrumentation implements TypeInstrumentation {
                 @Advice.Local("otelContext") Context context,
                 @Advice.Local("otelScope") Scope scope) {
             Context parentContext = Java8BytecodeBridge.currentContext();
+            System.out.println("MOTHER");
+            System.out.println("MOTHER");
+            System.out.println("MOTHER");
+            System.out.println("MOTHER");
+            System.out.println("MOTHER");
+            System.out.println("MOTHER");
 
             if (!instrumenter().shouldStart(parentContext, patient)) {
                 return;
             }
-
+            System.out.println("DAD");
+            System.out.println("DAD");
+            System.out.println("DAD");
+            System.out.println("DAD");
+            System.out.println("DAD");
+            System.out.println("DAD");
+            System.out.println("DAD");
+            System.out.println("DAD");
+            System.out.println("DAD");
             context = instrumenter().start(parentContext, patient);
             scope = context.makeCurrent();
         }
