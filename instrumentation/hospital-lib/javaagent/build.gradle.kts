@@ -1,5 +1,5 @@
 plugins {
-    `java-library`
+    `java`
 }
 
 repositories {
@@ -17,15 +17,17 @@ val otelInstVersion = "1.26.0";
 val otelInstVersionAlpha = "1.26.0-alpha";
 
 dependencies {
-    api(platform("io.opentelemetry:opentelemetry-bom:$otelVersion"))
-    annotationProcessor("com.google.auto.service:auto-service:1.0.1")
+    compileOnly(platform("io.opentelemetry:opentelemetry-bom:$otelVersion"))
+
     compileOnly("com.google.auto.service:auto-service-annotations:1.0.1")
-    api(project(":hospital-lib"))
-    api(project(":instrumentation:hospital-lib:library"))
-    api("io.opentelemetry.instrumentation:opentelemetry-instrumentation-api:$otelInstVersion")
+    annotationProcessor("com.google.auto.service:auto-service:1.0.1")
+
+    compileOnly(project(":hospital-lib"))
+    implementation(project(":instrumentation:hospital-lib:library"))
+    compileOnly("io.opentelemetry.instrumentation:opentelemetry-instrumentation-api:$otelInstVersion")
 //    api("io.opentelemetry.instrumentation:javaagent-extension-api:$otelInstVersion")
-    api("io.opentelemetry.javaagent:opentelemetry-javaagent-extension-api:${otelInstVersionAlpha}")
-    api("io.opentelemetry.instrumentation:opentelemetry-instrumentation-api-semconv:$otelInstVersionAlpha")
-    api("io.opentelemetry:opentelemetry-api")
+    compileOnly("io.opentelemetry.javaagent:opentelemetry-javaagent-extension-api:${otelInstVersionAlpha}")
+    compileOnly("io.opentelemetry.instrumentation:opentelemetry-instrumentation-api-semconv:$otelInstVersionAlpha")
+    compileOnly("io.opentelemetry:opentelemetry-api")
 
 }

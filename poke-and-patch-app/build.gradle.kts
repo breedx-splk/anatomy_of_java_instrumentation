@@ -13,7 +13,7 @@ java {
 }
 
 application {
-    mainClass.set("io.example.WizBangApp")
+    mainClass.set("io.example.LibraryInstrumentedWizBangApp")
     applicationDefaultJvmArgs = listOf(
         "-Dotel.service.name=PatchAndPoke"
     )
@@ -24,8 +24,9 @@ task("runWithAgent", JavaExec::class) {
     classpath = sourceSets["main"].runtimeClasspath
     jvmArgs = listOf(
         "-javaagent:../opentelemetry-javaagent.jar",
-        "-Dotel.javaagent.extensions=../instrumentation/hospital/javaagent/build/build/libs/javaagent.jar",
-        "-Dotel.service.name=PatchAndPoke"
+        "-Dotel.javaagent.extensions=../instrumentation/hospital-lib/javaagent/build/libs/javaagent.jar",
+        "-Dotel.service.name=PatchAndPoke",
+        "-Dotel.javaagent.debug=true"
     )
 }
 

@@ -36,7 +36,7 @@ public final class ExampleHospital implements Hospital {
 
     private void start() {
         // Just an old-fashioned inefficient operation loop here.
-        loop.scheduleAtFixedRate(this::loop, 0, 3, TimeUnit.SECONDS);
+        loop.scheduleAtFixedRate(this::loop, 0, 1, TimeUnit.SECONDS);
     }
 
     private ExampleHospital() {
@@ -105,7 +105,7 @@ public final class ExampleHospital implements Hospital {
 
     @Override
     public void doctorAvailable(Doctor doctor) {
-        System.out.println("Dr. " + doctor.name() + " is now available in the hospital.");
+        System.out.println(doctor.name() + " is now available in the hospital.");
         doctors.add(doctor);
     }
 

@@ -1,4 +1,4 @@
-package io.opentelemetry.instrumentation.hospital;
+package io.opentelemetry.javaagent.instrumentation.hospital;
 
 import io.opentelemetry.context.Context;
 import io.opentelemetry.context.Scope;
@@ -12,7 +12,7 @@ import net.hospital.model.Ailment;
 import net.hospital.model.Doctor;
 import net.hospital.model.Patient;
 
-import static io.opentelemetry.instrumentation.hospital.HospitalSingletons.instrumenter;
+import static io.opentelemetry.javaagent.instrumentation.hospital.HospitalSingletons.instrumenter;
 import static net.bytebuddy.matcher.ElementMatchers.isMethod;
 import static net.bytebuddy.matcher.ElementMatchers.named;
 import static net.bytebuddy.matcher.ElementMatchers.takesArguments;

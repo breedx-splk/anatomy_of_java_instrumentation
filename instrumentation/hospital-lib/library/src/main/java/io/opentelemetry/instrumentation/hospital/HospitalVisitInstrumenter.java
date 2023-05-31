@@ -6,9 +6,9 @@ import net.hospital.model.Patient;
 
 import static io.opentelemetry.instrumentation.hospital.HospitalTelemetry.INSTRUMENTATION_NAME;
 
-class HospitalVisitInstrumenter {
+public class HospitalVisitInstrumenter {
 
-    static Instrumenter<Patient,Void> create(OpenTelemetry otel){
+    public static Instrumenter<Patient,Void> create(OpenTelemetry otel){
         PatientAttributeExtractor attributesExtractor = new PatientAttributeExtractor();
         return Instrumenter.<Patient,Void>builder(otel, INSTRUMENTATION_NAME,
                         patient -> patient.name() + " visit")

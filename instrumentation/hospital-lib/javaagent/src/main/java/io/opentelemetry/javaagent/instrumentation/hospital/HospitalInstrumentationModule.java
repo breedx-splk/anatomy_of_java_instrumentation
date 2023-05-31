@@ -1,4 +1,4 @@
-package io.opentelemetry.instrumentation.hospital;
+package io.opentelemetry.javaagent.instrumentation.hospital;
 
 import com.google.auto.service.AutoService;
 import io.opentelemetry.javaagent.extension.instrumentation.InstrumentationModule;
@@ -9,7 +9,7 @@ import java.util.List;
 @AutoService(InstrumentationModule.class)
 public class HospitalInstrumentationModule extends InstrumentationModule {
 
-    protected HospitalInstrumentationModule() {
+    public HospitalInstrumentationModule() {
         super("hospital-lib");
     }
 
