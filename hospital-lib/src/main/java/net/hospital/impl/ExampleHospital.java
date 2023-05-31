@@ -65,12 +65,17 @@ public final class ExampleHospital implements Hospital {
             waitingRoom.add(patient);
             return false;
         } else {
-            doctors.remove(doctor);
-            doctorUnavailable(doctor, "Starting treatment of " + patient.name() + " for " + ailment);
-            activeVisits.put(patient, doctor);
-            listeners.forEach(listener -> listener.onStartDoctorVisit(patient, doctor));
+            startTreatment(patient, ailment, doctor);
             return true;
         }
+    }
+
+    private void startTreatment(Patient patient, Ailment ailment, Doctor doctor) {
+        doctors.remove(doctor);
+        doctorUnavailable(doctor, "Starting treatment of " + patient.name() + " for " + ailment);
+        activeVisits.put(patient, doctor);
+        // Ideally this would exist to facilitate library instrumentation, but we pretend this hasn't been built yet
+        // listeners.forEach(listener -> listener.onStartDoctorVisit(patient, doctor));
     }
 
     private void performATreatment() {
@@ -78,19 +83,23 @@ public final class ExampleHospital implements Hospital {
         Patient patient = entry.getKey();
         Doctor doctor = entry.getValue();
         if(activeVisits.remove(patient) != null){
-            Ailment ailment = patient.ailments().get(0);
+            finishTreatment(patient, doctor);
+        }
+    }
 
-            listeners.forEach(listener -> listener.onEndDoctorVisit(patient, doctor));
-            System.out.println(patient.name() + " has been treated by " + doctor.name() + " for " + ailment);
-            listeners.forEach(listener -> listener.onTreatment(doctor, patient, ailment, "Given excellent medical treatment!"));
+    private void finishTreatment(Patient patient, Doctor doctor) {
+        Ailment ailment = patient.ailments().get(0);
+        // Ideally this would exist to facilitate library instrumentation, but we pretend this hasn't been built yet
+        // listeners.forEach(listener -> listener.onEndDoctorVisit(patient, doctor));
+        System.out.println(patient.name() + " has been treated by " + doctor.name() + " for " + ailment);
+        listeners.forEach(listener -> listener.onTreatment(doctor, patient, ailment, "Given excellent medical treatment!"));
 
-            doctorAvailable(doctor);
-            Patient healedPatient = patient.removeAilment(ailment);
-            waitingRoom.add(healedPatient);
-            if(!healedPatient.hasRemainingAilments()){
-                // All healed up!
-                checkOut(healedPatient);
-            }
+        doctorAvailable(doctor);
+        Patient healedPatient = patient.removeAilment(ailment);
+        waitingRoom.add(healedPatient);
+        if(!healedPatient.hasRemainingAilments()){
+            // All healed up!
+            checkOut(healedPatient);
         }
     }
 

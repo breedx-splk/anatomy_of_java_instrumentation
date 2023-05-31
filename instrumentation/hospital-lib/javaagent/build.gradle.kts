@@ -21,6 +21,7 @@ dependencies {
     annotationProcessor("com.google.auto.service:auto-service:1.0.1")
     compileOnly("com.google.auto.service:auto-service-annotations:1.0.1")
     api(project(":hospital-lib"))
+    api(project(":instrumentation:hospital-lib:library"))
     api("io.opentelemetry.instrumentation:opentelemetry-instrumentation-api:$otelInstVersion")
 //    api("io.opentelemetry.instrumentation:javaagent-extension-api:$otelInstVersion")
     api("io.opentelemetry.javaagent:opentelemetry-javaagent-extension-api:${otelInstVersionAlpha}")

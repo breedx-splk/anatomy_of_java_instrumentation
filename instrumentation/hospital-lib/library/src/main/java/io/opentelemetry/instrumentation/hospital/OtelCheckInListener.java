@@ -1,8 +1,6 @@
 package io.opentelemetry.instrumentation.hospital;
 
-import io.opentelemetry.api.trace.Span;
 import io.opentelemetry.context.Context;
-import io.opentelemetry.context.Scope;
 import io.opentelemetry.instrumentation.api.instrumenter.Instrumenter;
 import net.hospital.api.PatientListener;
 import net.hospital.model.Patient;

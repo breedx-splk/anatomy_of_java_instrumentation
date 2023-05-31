@@ -25,13 +25,16 @@ public interface PatientListener {
      */
     default void onCheckOut(Patient patient){}
 
+    // These are examples that _shuold_ exist in the API to help facilitate
+    // observability. They are excluded here but left as a reference for how
+    // things could/should be improved.
     /**
      * Called when a Doctor first sees a Patient
      */
-    default void onStartDoctorVisit(Patient patient, Doctor doctor){}
+//    default void onStartDoctorVisit(Patient patient, Doctor doctor){}
 
     /**
      * Called when a doctor finishes seeing a Patient
      */
-    default void onEndDoctorVisit(Patient patient, Doctor doctor){}
+//    default void onEndDoctorVisit(Patient patient, Doctor doctor){}
 }

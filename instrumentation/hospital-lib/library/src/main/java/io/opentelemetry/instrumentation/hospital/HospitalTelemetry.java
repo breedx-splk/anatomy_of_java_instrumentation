@@ -12,7 +12,7 @@ public class HospitalTelemetry {
     private final Instrumenter<Patient,Void> instrumenter;
 
     public static HospitalTelemetry create(OpenTelemetry openTelemetry){
-        Instrumenter<Patient, Void> instrumenter = HospitalInstrumenter.create(openTelemetry);
+        Instrumenter<Patient, Void> instrumenter = HospitalVisitInstrumenter.create(openTelemetry);
         return new HospitalTelemetry(instrumenter);
     }
 

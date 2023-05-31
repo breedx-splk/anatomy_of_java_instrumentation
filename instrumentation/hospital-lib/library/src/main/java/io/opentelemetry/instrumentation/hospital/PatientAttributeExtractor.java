@@ -10,7 +10,7 @@ public class PatientAttributeExtractor implements AttributesExtractor<Patient,Vo
     public void onStart(AttributesBuilder attributes, Context parentContext, Patient patient) {
         attributes.put("firstName", patient.firstName());
         attributes.put("lastName", patient.lastName());
-        attributes.put("ailmentCount", patient.ailments().size());
+        attributes.put("initialAilmentCount", patient.ailments().size());
     }
 
     @Override

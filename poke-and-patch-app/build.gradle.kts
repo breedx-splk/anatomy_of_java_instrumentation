@@ -12,6 +12,23 @@ java {
     }
 }
 
+application {
+    mainClass.set("io.example.WizBangApp")
+    applicationDefaultJvmArgs = listOf(
+        "-Dotel.service.name=PatchAndPoke"
+    )
+}
+
+task("runWithAgent", JavaExec::class) {
+    mainClass.set("io.example.WizBangApp")
+    classpath = sourceSets["main"].runtimeClasspath
+    jvmArgs = listOf(
+        "-javaagent:../opentelemetry-javaagent.jar",
+        "-Dotel.javaagent.extensions=../instrumentation/hospital/javaagent/build/build/libs/javaagent.jar",
+        "-Dotel.service.name=PatchAndPoke"
+    )
+}
+
 val otelVersion = "1.26.0";
 
 dependencies {
@@ -22,4 +39,5 @@ dependencies {
     implementation(project(":instrumentation:hospital-lib:library"))
     implementation("io.opentelemetry:opentelemetry-api:")
     implementation("io.opentelemetry:opentelemetry-sdk")
+    runtimeOnly(project(":instrumentation:hospital-lib:javaagent"))
 }
