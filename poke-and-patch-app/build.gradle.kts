@@ -24,7 +24,7 @@ task("runWithAgent", JavaExec::class) {
     classpath = sourceSets["main"].runtimeClasspath
     jvmArgs = listOf(
         "-javaagent:../opentelemetry-javaagent.jar",
-        "-Dotel.javaagent.extensions=../instrumentation/hospital-lib/javaagent/build/libs/javaagent.jar",
+        "-Dotel.javaagent.extensions=../instrumentation/hospital-lib/javaagent/build/libs/hospital-autoinstrumentation-all.jar",
         "-Dotel.service.name=PatchAndPoke",
         "-Dotel.javaagent.debug=true"
     )

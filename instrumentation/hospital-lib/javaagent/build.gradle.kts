@@ -1,5 +1,6 @@
 plugins {
-    `java`
+    java
+    id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
 repositories {
@@ -9,6 +10,16 @@ repositories {
 java {
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(17))
+    }
+}
+
+tasks {
+    shadowJar {
+        archiveBaseName.set("hospital-autoinstrumentation")
+        relocate("io.opentelemetry.instrumentation", "io.opentelemetry.javaagent.shaded.instrumentation")
+        dependencies {
+            include(project(":instrumentation:hospital-lib:library"))
+        }
     }
 }
 

@@ -9,7 +9,7 @@ public class HospitalSingletons {
 
     private final static Instrumenter<Patient,Void> INSTRUMENTER = HospitalVisitInstrumenter.create(GlobalOpenTelemetry.get());
 
-    static Instrumenter<Patient,Void> instrumenter(){
+    public static Instrumenter<Patient, Void> instrumenter() {
         return INSTRUMENTER;
     }
 }

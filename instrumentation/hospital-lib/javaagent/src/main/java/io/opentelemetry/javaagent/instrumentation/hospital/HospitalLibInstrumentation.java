@@ -47,26 +47,13 @@ public class HospitalLibInstrumentation implements TypeInstrumentation {
                 @Advice.Argument(2) Doctor doctor,
                 @Advice.Local("otelContext") Context context,
                 @Advice.Local("otelScope") Scope scope) {
-            Context parentContext = Java8BytecodeBridge.currentContext();
-            System.out.println("MOTHER");
-            System.out.println("MOTHER");
-            System.out.println("MOTHER");
-            System.out.println("MOTHER");
-            System.out.println("MOTHER");
-            System.out.println("MOTHER");
 
+            Context parentContext = Java8BytecodeBridge.currentContext();
             if (!instrumenter().shouldStart(parentContext, patient)) {
                 return;
             }
-            System.out.println("DAD");
-            System.out.println("DAD");
-            System.out.println("DAD");
-            System.out.println("DAD");
-            System.out.println("DAD");
-            System.out.println("DAD");
-            System.out.println("DAD");
-            System.out.println("DAD");
-            System.out.println("DAD");
+            System.out.println("xxx DAD");
+            System.out.println("xxx DAD");
             context = instrumenter().start(parentContext, patient);
             scope = context.makeCurrent();
         }
@@ -81,9 +68,11 @@ public class HospitalLibInstrumentation implements TypeInstrumentation {
                 @Advice.Local("otelContext") Context context,
                 @Advice.Local("otelScope") Scope scope){
 
+            System.out.println("xxx JEB");
             if (scope == null) {
                 return;
             }
+            System.out.println("xxx JIMMY");
             scope.close();
             instrumenter().end(context, patient, null, exception);
         }
