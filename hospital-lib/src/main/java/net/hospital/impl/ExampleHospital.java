@@ -83,12 +83,12 @@ public final class ExampleHospital implements Hospital {
         Patient patient = entry.getKey();
         Doctor doctor = entry.getValue();
         if(activeVisits.remove(patient) != null){
-            finishTreatment(patient, doctor);
+            Ailment ailment = patient.ailments().get(0);
+            finishTreatment(patient, doctor, ailment);
         }
     }
 
-    private void finishTreatment(Patient patient, Doctor doctor) {
-        Ailment ailment = patient.ailments().get(0);
+    private void finishTreatment(Patient patient, Doctor doctor, Ailment ailment) {
         // Ideally this would exist to facilitate library instrumentation, but we pretend this hasn't been built yet
         // listeners.forEach(listener -> listener.onEndDoctorVisit(patient, doctor));
         System.out.println(patient.name() + " has been treated by " + doctor.name() + " for " + ailment);

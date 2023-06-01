@@ -5,13 +5,9 @@ import io.opentelemetry.instrumentation.api.instrumenter.Instrumenter;
 import net.hospital.api.PatientListener;
 import net.hospital.model.Patient;
 
-import java.util.HashMap;
-import java.util.Map;
-
 class OtelCheckInListener implements PatientListener {
 
     private final Instrumenter<Patient, Void> instrumenter;
-    private final Map<String, Context> patientContext = new HashMap<>();
 
     OtelCheckInListener(Instrumenter<Patient, Void> instrumenter) {
         this.instrumenter = instrumenter;
@@ -22,13 +18,13 @@ class OtelCheckInListener implements PatientListener {
         Context parentContext = Context.current();
         if (instrumenter.shouldStart(parentContext, patient)) {
             Context context = instrumenter.start(parentContext, patient);
-            patientContext.put(patient.name(), context);
+            PatientVisitContextHolder.put(patient.name(), context);
         }
     }
 
     @Override
     public void onCheckOut(Patient patient) {
-        Context context = patientContext.remove(patient.name());
+        Context context = PatientVisitContextHolder.remove(patient.name());
         instrumenter.end(context, patient, null, null);
     }
 }

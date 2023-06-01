@@ -26,7 +26,7 @@ task("runWithAgent", JavaExec::class) {
         "-javaagent:../opentelemetry-javaagent.jar",
         "-Dotel.javaagent.extensions=../instrumentation/hospital-lib/javaagent/build/libs/hospital-autoinstrumentation-all.jar",
         "-Dotel.service.name=PatchAndPoke",
-        "-Dotel.javaagent.debug=true"
+//        "-Dotel.javaagent.debug=true"
     )
 }
 

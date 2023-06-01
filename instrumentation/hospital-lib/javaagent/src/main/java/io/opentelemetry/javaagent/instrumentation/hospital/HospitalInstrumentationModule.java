@@ -1,7 +1,6 @@
 package io.opentelemetry.javaagent.instrumentation.hospital;
 
 import com.google.auto.service.AutoService;
-import io.opentelemetry.instrumentation.hospital.HospitalTelemetry;
 import io.opentelemetry.javaagent.extension.instrumentation.InstrumentationModule;
 import io.opentelemetry.javaagent.extension.instrumentation.TypeInstrumentation;
 
@@ -17,20 +16,19 @@ public class HospitalInstrumentationModule extends InstrumentationModule {
     @Override
     public List<String> getAdditionalHelperClassNames() {
         return List.of(HospitalSingletons.class.getName(),
+                Treatment.class.getName(),
+                TreatmentAttributeExtractor.class.getName(),
+                TreatmentInstrumenter.class.getName(),
                 "io.opentelemetry.javaagent.shaded.instrumentation.hospital.HospitalVisitInstrumenter",
-                "io.opentelemetry.javaagent.shaded.instrumentation.hospital.PatientAttributeExtractor"
+                "io.opentelemetry.javaagent.shaded.instrumentation.hospital.PatientAttributeExtractor",
+                "io.opentelemetry.javaagent.shaded.instrumentation.hospital.HospitalTelemetry",
+                "io.opentelemetry.javaagent.shaded.instrumentation.hospital.PatientVisitContextHolder",
+                "io.opentelemetry.javaagent.shaded.instrumentation.hospital.OtelCheckInListener"
         );
     }
 
     @Override
-    public boolean isHelperClass(String className) {
-        System.out.println("SHITBALL: " + className);
-//        return className.startsWith("io.opentelemetry.javaagent.instrumentation.hospital");
-        return className.startsWith(HospitalTelemetry.class.getPackageName());
-    }
-
-    @Override
     public List<TypeInstrumentation> typeInstrumentations() {
-        return List.of(new HospitalLibInstrumentation());
+        return List.of(new HospitalInstrumentation());
     }
 }
