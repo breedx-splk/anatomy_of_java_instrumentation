@@ -5,9 +5,13 @@ framework. We will explore the connective tissue that binds the agent to an appl
 learn how observable telemetry is created automatically. With this new understanding as our scalpel, 
 we will slice into an example library to create a brand new instrumentation.
 
+## Slides
+
+[Slides can be found here](https://docs.google.com/presentation/d/1hvnzgTDvQGLGS97ffQhdoJ-WBw3iPywUfG12oRomStE/edit?usp=sharing).
+
 ## Outline
 
-See [outline.md] for talk outline.
+See [outline.md] for original talk outline.
 
 ## Repo structure
 
