@@ -43,7 +43,6 @@ public final class ExampleHospital implements Hospital {
     }
 
     private void loop() {
-//        System.out.println("ExampleHospital.loop()");
         if(!waitingRoom.isEmpty()){
             if(findAPatientADoctor()){
                 return;

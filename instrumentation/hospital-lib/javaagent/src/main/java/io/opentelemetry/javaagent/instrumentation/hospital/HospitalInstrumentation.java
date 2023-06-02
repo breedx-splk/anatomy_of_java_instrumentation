@@ -77,7 +77,6 @@ public class HospitalInstrumentation implements TypeInstrumentation {
                 @Advice.Argument(2) Ailment ailment,
                 @Advice.Thrown Throwable exception){
 
-            System.out.println("xxx JEB");
             Context context = HospitalSingletons.popContext(patient.name());
             Treatment treatment = new Treatment(patient, doctor, ailment);
             treatmentInstrumenter().end(context, treatment, null, exception);
