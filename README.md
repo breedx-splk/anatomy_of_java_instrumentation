@@ -11,7 +11,7 @@ we will slice into an example library to create a brand new instrumentation.
 
 ## Outline
 
-See [outline.md] for original talk outline.
+See [outline.md](outline.md) for original talk outline.
 
 ## Repo structure
 
@@ -20,3 +20,5 @@ Here is a summary of the projects in this repo:
 * hospital-lib - A general-purpose library for all things medical!
 * surgeon-app - An example application 
 * instrumentation
+  * library - instrumentation that uses o11y hooks, no bytecode weaving
+  * javaagent - bytecode weaving to observe individual patient treatments
