@@ -14,6 +14,11 @@ public class HospitalInstrumentationModule extends InstrumentationModule {
     }
 
     @Override
+    public List<TypeInstrumentation> typeInstrumentations() {
+        return List.of(new HospitalInstrumentation());
+    }
+
+    @Override
     public List<String> getAdditionalHelperClassNames() {
         return List.of(HospitalSingletons.class.getName(),
                 Treatment.class.getName(),
@@ -25,10 +30,5 @@ public class HospitalInstrumentationModule extends InstrumentationModule {
                 "io.opentelemetry.javaagent.shaded.instrumentation.hospital.PatientVisitContextHolder",
                 "io.opentelemetry.javaagent.shaded.instrumentation.hospital.OtelCheckInListener"
         );
-    }
-
-    @Override
-    public List<TypeInstrumentation> typeInstrumentations() {
-        return List.of(new HospitalInstrumentation());
     }
 }
